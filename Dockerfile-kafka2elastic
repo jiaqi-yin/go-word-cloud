@@ -1,0 +1,12 @@
+FROM golang:1.17
+
+ENV WORKPATH=/app
+ENV APPNAME=kafka2elastic-service
+
+COPY ./shared ${WORKPATH}/shared
+COPY ./${APPNAME} ${WORKPATH}/${APPNAME}
+WORKDIR ${WORKPATH}/${APPNAME}
+
+RUN go build -o ${APPNAME}
+
+CMD [ "./kafka2elastic-service" ]

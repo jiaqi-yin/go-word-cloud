@@ -1,0 +1,12 @@
+FROM golang:1.17
+
+ENV WORKPATH=/app
+ENV APPNAME=feed2kafka-service
+
+COPY ./shared ${WORKPATH}/shared
+COPY ./${APPNAME} ${WORKPATH}/${APPNAME}
+WORKDIR ${WORKPATH}/${APPNAME}
+
+RUN go build -o ${APPNAME}
+
+CMD [ "./feed2kafka-service" ]

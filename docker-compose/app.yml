@@ -1,0 +1,23 @@
+version: "3.9"
+
+services:
+  feed2kafka:
+    build:
+      context: ../
+      dockerfile: Dockerfile-feed2kafka
+    depends_on:
+      schema-registry:
+        condition: service_healthy
+    networks:
+      - ${SERVICE_NETWORK}
+  kafka2elastic:
+    depends_on:
+      feed2kafka:
+        condition: service_started
+      es01:
+        condition: service_healthy
+    build:
+      context: ../
+      dockerfile: Dockerfile-kafka2elastic
+    networks:
+      - ${SERVICE_NETWORK}

@@ -1,0 +1,19 @@
+feed:
+  url: https://shinesolutions.com/feed
+kafka:
+  topic: word-cloud.feed.avro
+  num_partitions: 1
+  replication_factor: 3
+  bootstrap_servers: kafka-broker-1:9092 # When running out of container: localhost:19092
+  schema_registry_url: http://schema-registry:8081 # When running out of container: http://localhost:8081
+  avro_schema_file: feed.avsc
+  consumer:
+    consumer_group_id: feed-avro-consumer
+    auto_offset_reset: earliest
+elastic:
+  url: http://es01:9200 # When running out of container: http://localhost:9200
+  index: feed
+  mapping_file: mapping.json
+retry:
+  sleep_time: 5
+  timeout: 300

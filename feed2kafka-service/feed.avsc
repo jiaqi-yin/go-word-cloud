@@ -1,0 +1,26 @@
+{
+    "namespace": "feed2kafka.avro",
+    "type": "record",
+    "name": "FeedItem",
+    "fields": [
+        {
+            "name": "id",
+            "type": "string"
+        },
+        {
+            "name": "title",
+            "type": "string"
+        },
+        {
+            "name": "description",
+            "type": "string"
+        },
+        {
+            "name": "categories",
+            "type": {
+                "type": "array",
+                "items": "string"
+            }
+        }
+    ]
+}
